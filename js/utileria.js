@@ -317,3 +317,19 @@ function limpiarErrores() {
         inputs[i].classList.remove("input-error");
     }
 }
+
+// Limpiar espacios
+function limpiarEspacios(texto) {
+    if (!texto || typeof texto !== "string") return "";
+    return texto.trim().replace(/\s+/g, " ");
+}
+
+// Esconder un dato y mostrar solo unos digitos
+function enmascararDato(texto, visibles) {
+    if (!texto || typeof texto !== "string" && typeof texto !== "number") return "";
+    const limpio = String(texto).trim();
+    if (limpio.length <= visibles) return limpio;
+    
+    const ocultos = limpio.length - visibles;
+    return "*".repeat(ocultos) + limpio.slice(-visibles);
+}
