@@ -1,4 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
+    var usuarioGuardado = localStorage.getItem("usuarioActual");
+    var navUsuario = document.getElementById("navUsuario");
+    var navUsuarioMovil = document.getElementById("navUsuarioMovil");
+    var btnSalir = document.getElementById("btnSalir");
+
+    if (!usuarioGuardado) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (navUsuario) {
+        navUsuario.textContent = usuarioGuardado;
+    }
+    if (navUsuarioMovil) {
+        navUsuarioMovil.textContent = usuarioGuardado;
+    }
+
+    if (btnSalir) {
+        btnSalir.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("usuarioActual");
+            window.location.href = "login.html";
+        });
+    }
+
     var form = document.getElementById("studentForm");
     var fields = ["nombre", "email", "control", "password", "nacimiento"];
     var btnTogglePassword = document.getElementById("togglePassword");
@@ -149,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             modalTitle.textContent = "Alumno Menor de Edad";
             modalTitle.className = "fw-bold mb-2 text-warning";
-            modalDescription.innerHTML = `El alumno <strong>${nombreAlumno}</strong> tiene <strong>${edad} años</strong>.`;
+            modalDescription.innerHTML = `El alumno <strong>${nombreAlumno}</strong> tiene <strong>${edad} años</strong>.<br>Es menor de edad, se requerirá carta responsiva del tutor.`;
             modalIcon.innerHTML = '<span class="material-symbols-outlined text-warning" style="font-size: 40px;">warning</span>';
             modalIcon.className = "mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-warning-subtle";
         }
