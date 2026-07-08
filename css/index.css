@@ -1,3 +1,7 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 :root {
   --bs-primary: #6f42c1;
   --bs-primary-rgb: 111, 66, 193;
@@ -41,6 +45,10 @@
   margin-left: 0;
 }
 
+#mainContent.sidebar-shifted {
+  margin-left: 256px;
+}
+
 #sidebarOverlay {
   display: none;
   background-color: rgba(0, 0, 0, 0.4);
@@ -66,15 +74,6 @@
 }
 
 @media (min-width: 992px) {
-  #sidebar {
-    transform: translateX(0) !important;
-    box-shadow: none;
-  }
-
-  #mainContent {
-    margin-left: 256px !important;
-  }
-
   #sidebarOverlay {
     display: none !important;
   }

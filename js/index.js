@@ -53,14 +53,17 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isOpen) {
                 sidebar.classList.remove("sidebar-open");
                 sidebarOverlay.classList.remove("active");
+                document.getElementById("mainContent").classList.remove("sidebar-shifted");
             } else {
                 sidebar.classList.add("sidebar-open");
                 sidebarOverlay.classList.add("active");
+                document.getElementById("mainContent").classList.add("sidebar-shifted");
             }
         });
         sidebarOverlay.addEventListener("click", function () {
             sidebar.classList.remove("sidebar-open");
             sidebarOverlay.classList.remove("active");
+            document.getElementById("mainContent").classList.remove("sidebar-shifted");
         });
     }
 
