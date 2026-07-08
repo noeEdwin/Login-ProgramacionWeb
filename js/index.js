@@ -8,14 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "login.html";
         return;
     }
-
     if (navUsuario) {
         navUsuario.textContent = usuarioGuardado;
     }
     if (navUsuarioMovil) {
         navUsuarioMovil.textContent = usuarioGuardado;
     }
-
     if (btnSalir) {
         btnSalir.addEventListener("click", function (e) {
             e.preventDefault();
@@ -29,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var btnTogglePassword = document.getElementById("togglePassword");
     var passwordInput = document.getElementById("password");
     var pwIcon = document.getElementById("pwIcon");
-    
+
     var btnMenuToggle = document.getElementById("menu-toggle");
     var sidebar = document.getElementById("sidebar");
     var sidebarOverlay = document.getElementById("sidebarOverlay");
@@ -50,25 +48,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (btnMenuToggle && sidebar && sidebarOverlay) {
-        var mainContent = document.getElementById("mainContent");
-
         btnMenuToggle.addEventListener("click", function () {
             var isOpen = sidebar.classList.contains("sidebar-open");
             if (isOpen) {
                 sidebar.classList.remove("sidebar-open");
-                sidebarOverlay.style.display = "none";
-                if (mainContent) mainContent.classList.remove("sidebar-shifted");
+                sidebarOverlay.classList.remove("active");
             } else {
                 sidebar.classList.add("sidebar-open");
-                sidebarOverlay.style.display = "block";
-                if (mainContent) mainContent.classList.add("sidebar-shifted");
+                sidebarOverlay.classList.add("active");
             }
         });
-
         sidebarOverlay.addEventListener("click", function () {
             sidebar.classList.remove("sidebar-open");
-            sidebarOverlay.style.display = "none";
-            if (mainContent) mainContent.classList.remove("sidebar-shifted");
+            sidebarOverlay.classList.remove("active");
         });
     }
 
@@ -167,22 +159,19 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!allValid) {
             return;
         }
-
         var fechaNacimiento = document.getElementById("nacimiento").value;
         var edad = calcularEdad(fechaNacimiento);
         var esMayor = esMayorDeEdad(fechaNacimiento);
         var nombreAlumno = document.getElementById("nombre").value.trim();
-
         var modalTitle = document.getElementById("modalTitle");
         var modalDescription = document.getElementById("modalDescription");
         var modalIcon = document.getElementById("modalIcon");
-
         if (esMayor) {
             modalTitle.textContent = "¡Alumno Mayor de Edad!";
-            modalTitle.className = "fw-bold mb-2 text-success";
+            modalTitle.className = "fw-bold mb-2 text-primary";
             modalDescription.innerHTML = `El alumno <strong>${nombreAlumno}</strong> tiene <strong>${edad} años</strong>.<br>Cumple con la mayoría de edad para el registro.`;
-            modalIcon.innerHTML = '<span class="material-symbols-outlined text-success" style="font-size: 40px;">check_circle</span>';
-            modalIcon.className = "mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-success-subtle";
+            modalIcon.innerHTML = '<span class="material-symbols-outlined text-primary" style="font-size: 40px;">check_circle</span>';
+            modalIcon.className = "mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-primary-subtle";
         } else {
             modalTitle.textContent = "Alumno Menor de Edad";
             modalTitle.className = "fw-bold mb-2 text-warning";
@@ -190,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function () {
             modalIcon.innerHTML = '<span class="material-symbols-outlined text-warning" style="font-size: 40px;">warning</span>';
             modalIcon.className = "mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-warning-subtle";
         }
-
         var ageModalEl = document.getElementById("ageModal");
         var modal = new bootstrap.Modal(ageModalEl);
         modal.show();

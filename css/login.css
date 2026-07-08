@@ -10,7 +10,7 @@ body {
 }
 
 .text-dark-blue {
-  color: #002b7a;
+  color: #4a2583;
   font-size: 1.4rem;
 }
 
@@ -30,8 +30,8 @@ body {
 }
 
 .form-control:focus {
-  border-color: #1d4ed8;
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+  border-color: #6f42c1;
+  box-shadow: 0 0 0 3px rgba(111, 66, 193, 0.15);
   background-color: #fff;
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .btn-primary-custom {
-  background-color: #0046d5;
+  background-color: #6f42c1;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -50,12 +50,12 @@ body {
 }
 
 .btn-primary-custom:hover {
-  background-color: #0036a3;
+  background-color: #59359a;
   color: #ffffff;
 }
 
 .btn-primary-custom:active {
-  background-color: #002b85;
+  background-color: #52318f;
 }
 
 .input-group .form-control:focus {
@@ -69,25 +69,7 @@ body {
   color: #64748b;
 }
 
-.btn-toggle-pass:hover,
-.btn-toggle-pass:active {
-  background-color: #e2e8f0;
-  color: #334155;
-}
-
-.input-group .form-control:focus {
-  z-index: 1;
-}
-
-.btn-toggle-pass {
-  border: 1px solid #cbd5e1;
-  border-left: none;
-  background-color: #f8fafc;
-  color: #64748b;
-}
-
-.btn-toggle-pass:hover,
-.btn-toggle-pass:active {
+.btn-toggle-pass:hover, .btn-toggle-pass:active {
   background-color: #e2e8f0;
   color: #334155;
 }

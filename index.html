@@ -15,7 +15,7 @@
 <!-- TopNavBar -->
 <header class="fixed-top d-flex align-items-center justify-content-between bg-white border-bottom shadow-sm px-3" style="height:64px;">
     <div class="d-flex align-items-center gap-3">
-        <button class="btn p-2" id="menu-toggle" type="button">
+        <button class="btn p-2 d-lg-none" id="menu-toggle" type="button">
             <span class="material-symbols-outlined">menu</span>
         </button>
         <h1 class="fs-5 fw-bold text-primary mb-0">Gestión Académica</h1>
@@ -48,8 +48,7 @@
 <aside class="d-flex flex-column position-fixed start-0 border-end bg-light" id="sidebar"
        style="width:256px; height:100vh; top:64px; z-index:40;">
     <div class="px-4 py-3 mb-3 mt-2">
-        <h2 class="fs-6 fw-bold text-primary mb-0">Gestión Académica</h2>
-        <small class="text-secondary">Administrador</small>
+        <h2 class="fs-6 fw-bold text-primary mb-0">Menu</h2>
     </div>
 
     <nav class="flex-grow-1 px-3">
@@ -62,7 +61,7 @@
                 <span class="material-symbols-outlined" id="chevron">expand_more</span>
             </button>
             <div class="ps-4 mt-1" id="users-submenu">
-                <a class="d-block px-3 py-2 text-primary fw-bold rounded text-decoration-none bg-primary bg-opacity-10" href="#">Captura</a>
+              <a class="d-block px-3 py-2 text-primary fw-bold rounded text-decoration-none bg-primary-subtle" href="#">Captura</a>
             </div>
         </div>
     </nav>
