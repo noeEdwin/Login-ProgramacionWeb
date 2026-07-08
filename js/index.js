@@ -1,12 +1,54 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     var form = document.getElementById("studentForm");
     var fields = ["nombre", "email", "control", "password", "nacimiento"];
+    var btnTogglePassword = document.getElementById("togglePassword");
+    var passwordInput = document.getElementById("password");
+    var pwIcon = document.getElementById("pwIcon");
+    
+    var btnMenuToggle = document.getElementById("menu-toggle");
+    var sidebar = document.getElementById("sidebar");
+    var sidebarOverlay = document.getElementById("sidebarOverlay");
+    var btnUsersToggle = document.getElementById("users-toggle");
+    var usersSubmenu = document.getElementById("users-submenu");
+    var chevron = document.getElementById("chevron");
 
-    // Validate a single field
+    if (btnTogglePassword && passwordInput) {
+        btnTogglePassword.addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                if (pwIcon) pwIcon.textContent = "visibility_off";
+            } else {
+                passwordInput.type = "password";
+                if (pwIcon) pwIcon.textContent = "visibility";
+            }
+        });
+    }
+
+    if (btnMenuToggle && sidebar && sidebarOverlay) {
+        btnMenuToggle.addEventListener("click", function () {
+            sidebar.style.transform = "translateX(0)";
+            sidebarOverlay.style.display = "block";
+        });
+        sidebarOverlay.addEventListener("click", function () {
+            sidebar.style.transform = "translateX(-100%)";
+            sidebarOverlay.style.display = "none";
+        });
+    }
+
+    if (btnUsersToggle && usersSubmenu && chevron) {
+        btnUsersToggle.addEventListener("click", function () {
+            if (usersSubmenu.style.display === "none" || usersSubmenu.style.display === "") {
+                usersSubmenu.style.display = "block";
+                chevron.textContent = "expand_less";
+            } else {
+                usersSubmenu.style.display = "none";
+                chevron.textContent = "expand_more";
+            }
+        });
+    }
+
     function validateField(id) {
         var value = document.getElementById(id).value.trim();
-
         switch (id) {
             case "nombre":
                 if (value === "") {
@@ -19,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 limpiarCampo("nombre");
                 return true;
-
             case "email":
                 if (value === "") {
                     mostrarError("email", "El correo es obligatorio.");
@@ -31,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 limpiarCampo("email");
                 return true;
-
             case "control":
                 if (value === "") {
                     mostrarError("control", "El número de control es obligatorio.");
@@ -43,7 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 limpiarCampo("control");
                 return true;
-
             case "password":
                 if (value === "") {
                     mostrarError("password", "La contraseña es obligatoria.");
@@ -55,7 +94,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 limpiarCampo("password");
                 return true;
-
             case "nacimiento":
                 if (value === "") {
                     mostrarError("nacimiento", "La fecha de nacimiento es obligatoria.");
@@ -63,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 limpiarCampo("nacimiento");
                 return true;
-
             default:
                 return true;
         }
@@ -73,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var errorId = "error" + id.charAt(0).toUpperCase() + id.slice(1);
         var errorEl = document.getElementById(errorId);
         var inputEl = document.getElementById(id);
-
         if (errorEl) {
             errorEl.textContent = "";
         }
@@ -85,19 +121,42 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (e) {
         e.preventDefault();
         limpiarErrores();
-
         var allValid = true;
-
         fields.forEach(function (id) {
             if (!validateField(id)) {
                 allValid = false;
             }
         });
-
         if (!allValid) {
             return;
         }
 
+        var fechaNacimiento = document.getElementById("nacimiento").value;
+        var edad = calcularEdad(fechaNacimiento);
+        var esMayor = esMayorDeEdad(fechaNacimiento);
+        var nombreAlumno = document.getElementById("nombre").value.trim();
+
+        var modalTitle = document.getElementById("modalTitle");
+        var modalDescription = document.getElementById("modalDescription");
+        var modalIcon = document.getElementById("modalIcon");
+
+        if (esMayor) {
+            modalTitle.textContent = "¡Alumno Mayor de Edad!";
+            modalTitle.className = "fw-bold mb-2 text-success";
+            modalDescription.innerHTML = `El alumno <strong>${nombreAlumno}</strong> tiene <strong>${edad} años</strong>.<br>Cumple con la mayoría de edad para el registro.`;
+            modalIcon.innerHTML = '<span class="material-symbols-outlined text-success" style="font-size: 40px;">check_circle</span>';
+            modalIcon.className = "mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-success-subtle";
+        } else {
+            modalTitle.textContent = "Alumno Menor de Edad";
+            modalTitle.className = "fw-bold mb-2 text-warning";
+            modalDescription.innerHTML = `El alumno <strong>${nombreAlumno}</strong> tiene <strong>${edad} años</strong>.`;
+            modalIcon.innerHTML = '<span class="material-symbols-outlined text-warning" style="font-size: 40px;">warning</span>';
+            modalIcon.className = "mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-warning-subtle";
+        }
+
+        var ageModalEl = document.getElementById("ageModal");
+        var modal = new bootstrap.Modal(ageModalEl);
+        modal.show();
     });
 
     form.addEventListener("reset", function () {
