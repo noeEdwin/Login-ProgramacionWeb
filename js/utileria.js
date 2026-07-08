@@ -324,6 +324,20 @@ function limpiarEspacios(texto) {
     return texto.trim().replace(/\s+/g, " ");
 }
 
+function validarNumeroControl(numero) {
+    let valor = String(numero).trim();
+
+    if (valor === "") {
+        return false;
+    }
+
+    if (!/^\d{6}$/.test(valor)) {
+        return false;
+    }
+
+    return true;
+}
+
 // Esconder un dato y mostrar solo unos digitos
 function enmascararDato(texto, visibles) {
     if (!texto || typeof texto !== "string" && typeof texto !== "number") return "";
