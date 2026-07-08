@@ -158,7 +158,7 @@ En el panel de alumnos, se conectó el botón de "Guardar Alumno" al cálculo de
 1. Clonar este repositorio en tu máquina local:
 
 ```bash
-git clone [https://github.com/noeEdwin/Login-ProgramacionWeb.git](https://github.com/noeEdwin/Login-ProgramacionWeb.git)
+git clone https://github.com/noeEdwin/Login-ProgramacionWeb.git
 
 ```
 
@@ -182,5 +182,3 @@ El flujo completo del sistema (Login → Sistema → Modal de Alumnos → Cerrar
 **[Ver Sistema en Vivo - GitHub Pages](https://noeedwin.github.io/Login-ProgramacionWeb/login.html)**
 
 ---
-
-```
