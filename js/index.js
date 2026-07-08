@@ -50,13 +50,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (btnMenuToggle && sidebar && sidebarOverlay) {
+        var mainContent = document.getElementById("mainContent");
+
         btnMenuToggle.addEventListener("click", function () {
-            sidebar.style.transform = "translateX(0)";
-            sidebarOverlay.style.display = "block";
+            var isOpen = sidebar.classList.contains("sidebar-open");
+            if (isOpen) {
+                sidebar.classList.remove("sidebar-open");
+                sidebarOverlay.style.display = "none";
+                if (mainContent) mainContent.classList.remove("sidebar-shifted");
+            } else {
+                sidebar.classList.add("sidebar-open");
+                sidebarOverlay.style.display = "block";
+                if (mainContent) mainContent.classList.add("sidebar-shifted");
+            }
         });
+
         sidebarOverlay.addEventListener("click", function () {
-            sidebar.style.transform = "translateX(-100%)";
+            sidebar.classList.remove("sidebar-open");
             sidebarOverlay.style.display = "none";
+            if (mainContent) mainContent.classList.remove("sidebar-shifted");
         });
     }
 
